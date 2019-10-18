@@ -25,12 +25,12 @@ def handle_events():
         if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_p:
-            game_framework.change_state(main_state)
+            game_framework.pop_state()
 
 
 def draw():
     clear_canvas()
-    image.draw(400, 300)
+    image.draw(400, 300, 200, 200)
     update_canvas()
 
 def update():

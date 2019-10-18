@@ -14,6 +14,8 @@ boy = None
 grass = None
 font = None
 
+x, y = 0, 90
+
 
 class Grass:
     def __init__(self):
@@ -25,7 +27,8 @@ class Grass:
 
 class Boy:
     def __init__(self):
-        self.x, self.y = 0, 90
+        self.x = 0
+        self.y = 90
         self.frame = 0
         self.image = load_image('run_animation.png')
         self.dir = 1
@@ -63,6 +66,7 @@ def resume():
 
 
 def handle_events():
+    global x, y
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -70,7 +74,8 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.change_state(title_state)
         elif event.type == SDL_KEYDOWN and event.key == SDLK_p:
-            game_framework.change_state(pause_state)
+            x, y = event.x, event.y
+            game_framework.push_state(pause_state)
 
 
 def update():
